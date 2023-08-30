@@ -3,13 +3,22 @@ import express from "express";
 import config from "config";
 import connect from "./utils/connect";
 import logger from "./utils/logger";
-import ProductRouter from "./routes/products";
+import ProductRouter from "./routes/product.route";
+import CoreRouter from "./routes/core.route";
+import userRouter from "./routes/users.route";
 
 const port = config.get<number>("port");
 
 const app = express()
 
-app.use("/products", ProductRouter);
+// json parsing
+app.use(express.json());
+
+app.use("/api/products", ProductRouter);
+app.use("/", CoreRouter)
+app.use("/api/users", userRouter)
+
+
 
 app.listen(
     port,
