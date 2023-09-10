@@ -57,7 +57,8 @@ userShema.methods.comparePassword = async function (candidatePassword: string): 
     return bcrypt.compare(candidatePassword, user.password).catch((e) => false); 
 }
 
-const UsersModel = mongoose.model<UsersDocument>("users", userShema);
+//  create user model
+const UsersModel = mongoose.models.Users || mongoose.model<UsersDocument>('Users', userShema);
 
 export default UsersModel;
 

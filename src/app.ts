@@ -6,6 +6,9 @@ import logger from "./utils/logger";
 import ProductRouter from "./routes/product.route";
 import CoreRouter from "./routes/core.route";
 import userRouter from "./routes/users.route";
+import sessionRouter from "./routes/session.route";
+import deserializeUser from "./middleware/users/deserializeUser";
+
 
 const port = config.get<number>("port");
 
@@ -15,8 +18,12 @@ const app = express()
 app.use(express.json());
 
 app.use("/api/products", ProductRouter);
-app.use("/", CoreRouter)
-app.use("/api/users", userRouter)
+app.use("/", CoreRouter);
+app.use("/api/users", userRouter);
+app.use("/api/sessions", sessionRouter);
+
+//  deserialize user
+app.use(deserializeUser)
 
 
 

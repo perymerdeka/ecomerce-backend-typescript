@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import config from 'config';
-import { UsersDocument } from "./users.model";
+import { UsersDocument } from "../users/users.model";
 import { type } from "os";
 
 
